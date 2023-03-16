@@ -6,19 +6,25 @@ import java.util.Scanner;
 public class Slovenian {
     public Slovenian() {
         String tweet = "Igrali smo zelo dobro, zmagali, vendar smo resnično zamudili.";
-//        String tweet = "Igrali smo zelo dobro, zmagali, vendar smo resnično zamudili.";
+        //String tweet = "Igrali smo zelo dobro, zmagali, vendar smo resnično zamudili.";
         String[] cleaned_tweet = changeTweet(tweet);
         ArrayList<String> sloNegative = negativeCorpus();
         ArrayList<String> sloPositive = positiveCorpus();
-        float number_of_positive_words = 0;
-        float number_of_negative_words = 0;
 
-        float[] result = difference(cleaned_tweet, sloPositive, sloNegative, number_of_positive_words, number_of_negative_words);
-        for (int i = 0; i < result.length; i++) {
-            System.out.println(result[i]);
-        }
-
-        System.out.println(number_of_negative_words + " " + number_of_positive_words);
+        float[] result = difference(cleaned_tweet, sloPositive, sloNegative);
+        System.out.println("Tweet: ");
+        System.out.println(tweet);
+        System.out.println();
+        System.out.println("Processed tweet: ");
+        printProcessedTweet(cleaned_tweet);
+        System.out.println();
+        System.out.println();
+        printPositiveWords(cleaned_tweet, sloPositive);
+        System.out.println();
+        System.out.println();
+        printNegativeWords(cleaned_tweet, sloNegative);
+        System.out.println();
+        System.out.println("Sentiment of the tweet is " + sentimentBasic(result[0], result[1], result[2]) +" .");
 
     }
 
@@ -100,18 +106,18 @@ public class Slovenian {
     }
 
     public static double Result(String[] words, ArrayList<String> positiveAL, ArrayList<String> negativeAL, double posWords, double negWords) {
-        for (int i = 0; i < words.length; i++) {
+        for (String word : words) {
             for (int j = 0; j < negativeAL.toArray().length; j++) {
-                if (findSimilarity(negativeAL.get(j), words[i]) >= 0.8) {
+                if (findSimilarity(negativeAL.get(j), word) >= 0.8) {
                     negWords++;
                     break;
                 }
             }
         }
 
-        for (int i = 0; i < words.length; i++) {
+        for (String word : words) {
             for (int j = 0; j < positiveAL.toArray().length; j++) {
-                if (findSimilarity(positiveAL.get(j), words[i]) >= 0.8) {
+                if (findSimilarity(positiveAL.get(j), word) >= 0.8) {
                     posWords++;
                     break;
                 }
@@ -121,11 +127,13 @@ public class Slovenian {
         return (posWords - negWords) / words.length;
     }
 
-    public static float[] difference(String[] words, ArrayList<String> positiveLexicon, ArrayList<String> negativeLexicon, float posWords, float negWords) {
-        for (int i = 0; i < words.length; i++) {
-            if (positiveLexicon.contains(words[i])) {
+    public static float[] difference(String[] words, ArrayList<String> positiveLexicon, ArrayList<String> negativeLexicon) {
+        int posWords = 0;
+        int negWords = 0;
+        for (String word : words) {
+            if (positiveLexicon.contains(word)) {
                 posWords++;
-            } else if (negativeLexicon.contains(words[i])) {
+            } else if (negativeLexicon.contains(word)) {
                 negWords++;
             }
         }
@@ -135,13 +143,44 @@ public class Slovenian {
 
     public static void whichPositiveWords(String[] words, ArrayList<String> positiveLexicon, ArrayList<String> negativeLexicon) {
         String[] returnedPositiveWords = {};
-        for (int i = 0; i < words.length; i++) {
-            if (positiveLexicon.contains(words[i])) {
-                System.out.println("Positive word: " + words[i]);
+        for (String word : words) {
+            if (positiveLexicon.contains(word)) {
+                System.out.println("Positive word: " + word);
+            } else if (negativeLexicon.contains(word)) {
+                System.out.println("Negative word: " + word);
             }
-            else if (negativeLexicon.contains(words[i])) {
-                System.out.println("Negative word: " + words[i]);
+        }
+    }
+
+    public static void printPositiveWords(String[] words, ArrayList<String> positiveLexicon) {
+        System.out.println("Positive words: ");
+        for (String word : words) {
+            if (positiveLexicon.contains(word)) {
+                System.out.println(word);
             }
+        }
+    }
+
+    public static void printNegativeWords(String[] words, ArrayList<String> negativeLexicon) {
+        System.out.println("Negative words: ");
+        for (String word : words) {
+            if (negativeLexicon.contains(word)) {
+                System.out.println(word);
+            }
+        }
+    }
+
+    public static float sentimentBasic(float numOfPositiveWords, float numOfNegativeWords, float numOfAllWords) {
+        float pos = (float) numOfPositiveWords;
+        float neg = (float) numOfNegativeWords;
+        float all = (float) numOfAllWords;
+        float sent = (pos - neg)/all;
+        return sent;
+    }
+
+    public static void printProcessedTweet(String[] tweet) {
+        for (int i = 0; i < tweet.length; i++) {
+            System.out.print(tweet[i] + " ");
         }
     }
 }
