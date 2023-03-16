@@ -21,7 +21,6 @@ public class Slovenian {
         System.out.println();
         printPositiveWords(cleaned_tweet, sloPositive);
         System.out.println();
-        System.out.println();
         printNegativeWords(cleaned_tweet, sloNegative);
         System.out.println();
         System.out.println("Sentiment of the tweet is " + sentimentBasic(result[0], result[1], result[2]) +" .");
