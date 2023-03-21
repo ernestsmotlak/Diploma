@@ -3,29 +3,28 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Slovenian {
-    public Slovenian() {
-        String tweet = "Igrali smo zelo dobro, zmagali, vendar smo resnično zamudili.";
-        //String tweet = "Igrali smo zelo dobro, zmagali, vendar smo resnično zamudili.";
-        String[] cleaned_tweet = changeTweet(tweet);
-        ArrayList<String> sloNegative = negativeCorpus();
-        ArrayList<String> sloPositive = positiveCorpus();
+public class Jugo {
+    public Jugo() {
+        String bosnian_tweet = "Igrali smo veoma dobro, pobijedili, ali smo zaista propustili mnogo prilika.";
+        String[] cleaned_tweet = changeTweet(bosnian_tweet);
+        ArrayList<String> jugoNegative = negativeCorpus();
+        ArrayList<String> jugoPositive = positiveCorpus();
 
-        float[] result = difference(cleaned_tweet, sloPositive, sloNegative);
+        float[] result = difference(cleaned_tweet, jugoPositive, jugoNegative);
         
-/*
+
         System.out.println("Tweet: ");
-        System.out.println(tweet);
+        System.out.println(bosnian_tweet);
         System.out.println();
         System.out.println("Processed tweet: ");
         printProcessedTweet(cleaned_tweet);
         System.out.println();
         System.out.println();
-        printPositiveWords(cleaned_tweet, sloPositive);
+        printPositiveWords(cleaned_tweet, jugoPositive);
         System.out.println();
-        printNegativeWords(cleaned_tweet, sloNegative);
+        printNegativeWords(cleaned_tweet, jugoNegative);
         System.out.println();
-*/
+
         System.out.println("Sentiment of the tweet is " + sentimentBasic(result[0], result[1], result[2]) +"");
 
     }
@@ -42,7 +41,7 @@ public class Slovenian {
 
     static ArrayList<String> negativeCorpus() {
         ArrayList<String> corpus1 = new ArrayList<>(62942);
-        File fileName1 = new File("/Users/ernestsmotlak/Desktop/Famnit/Diploma/Lexicons/negative_words_Slovenian.txt");
+        File fileName1 = new File("/Users/ernestsmotlak/Desktop/Famnit/Diploma/Lexicons/negative_words_Jugo.txt");
         Scanner input = null;
         try {
             input = new Scanner(fileName1);
@@ -57,7 +56,7 @@ public class Slovenian {
 
     static ArrayList<String> positiveCorpus() {    //preberi pozitivne besede
         ArrayList<String> corpus2 = new ArrayList<>(62942);
-        File fileName2 = new File("/Users/ernestsmotlak/Desktop/Famnit/Diploma/Lexicons/positive_words_Slovenian.txt");
+        File fileName2 = new File("/Users/ernestsmotlak/Desktop/Famnit/Diploma/Lexicons/positive_words_Jugo.txt");
         Scanner input = null;
         try {
             input = new Scanner(fileName2);

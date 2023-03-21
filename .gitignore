@@ -4,4 +4,5 @@ lexicons/.DS_Store
 out/
 Diploma.iml
 *.class
-
+lexicons/negative_words_Slovenian.txt
+lexicons/positive_words_Slovenian.txt
