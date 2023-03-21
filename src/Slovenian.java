@@ -12,6 +12,7 @@ public class Slovenian {
         ArrayList<String> sloPositive = positiveCorpus();
 
         float[] result = difference(cleaned_tweet, sloPositive, sloNegative);
+        
 /*
         System.out.println("Tweet: ");
         System.out.println(tweet);
