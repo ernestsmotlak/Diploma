@@ -6,7 +6,7 @@ nlp = spacy.load("hr_core_news_md")
 text = "Kako je lepo kada su ulice pune ljudi, smeha, gužve i života. Nadam se da ćemo se uskoro vratiti tom normalnom stanju. #optimizam #život #beograd"
 text4 = "Zašto se nešto ne može platiti karticom ako se može kupiti na rate? Ovo je čista diskriminacija ljudi koji nemaju novca da plate sve odjednom. #nepravda #bankelopovi"
 text2 = "nekoliko rečenica na srpskom jeziku"
-text3 = "rečeno ili riječeno"
+text3 = "rečeno ili riječenooooo"
 doc = nlp(text)
 
 lemmas = []
