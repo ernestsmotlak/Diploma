@@ -3,5 +3,5 @@ lexicons/.DS_Store
 .idea/
 out/
 Diploma.iml
-src/Main.class
-src/Slovenian.class
+*.class
+
