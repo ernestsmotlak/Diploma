@@ -12,6 +12,7 @@ public class Slovenian {
         ArrayList<String> sloPositive = positiveCorpus();
 
         float[] result = difference(cleaned_tweet, sloPositive, sloNegative);
+/*
         System.out.println("Tweet: ");
         System.out.println(tweet);
         System.out.println();
@@ -23,7 +24,8 @@ public class Slovenian {
         System.out.println();
         printNegativeWords(cleaned_tweet, sloNegative);
         System.out.println();
-        System.out.println("Sentiment of the tweet is " + sentimentBasic(result[0], result[1], result[2]) +" .");
+*/
+        System.out.println("Sentiment of the tweet is " + sentimentBasic(result[0], result[1], result[2]) +"");
 
     }
 
