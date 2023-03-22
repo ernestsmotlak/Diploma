@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Jugo {
     public Jugo() {
-        String bosnian_tweet = "Kako je lepo kada su ulice pune ljudi, smeha, gužve i života. Nadam se da ćemo se uskoro vratiti tom normalnom stanju. #optimizam #život #beograd";
+        String bosnian_tweet = "Kako je plaho lepo kada su ulice definitivno pune ljudi, smeha, gužve i života. Nadam se da ćemo se uskoro vratiti tom stvarno normalnom stanju. #optimizam #život #beograd";
 
         // "Igrali smo veoma dobro, pobijedili, ali smo zaista propustili mnogo
         // prilika."
@@ -32,6 +32,16 @@ public class Jugo {
 
         System.out.println("Sentiment of the tweet is " + sentimentBasic(result[0], result[1], result[2]) + "");
         System.out.println("_______________________");
+
+        int number_of_anaWords = find_anaWords(cleaned_tweet, anaWords);
+        System.out.println("Number of AnA words is: " + number_of_anaWords);
+        System.out.println("_______________________");
+
+        System.out.println("AnA words:");
+        print_anaWords(cleaned_tweet, anaWords);
+
+        System.out.println("_______________________");
+        System.out.println("Advanced sentiment is: " + sentimentAdvanced(result, number_of_anaWords));
 
     }
 
@@ -165,8 +175,29 @@ public class Jugo {
         return new float[] { posWords, negWords, stringLength };
     }
 
-    public static void whichPositiveWords(String[] words, ArrayList<String> positiveLexicon,
-            ArrayList<String> negativeLexicon) {
+    public static int find_anaWords(String[] words, ArrayList<String> anaCorpus) {
+        int number_of_anaWords = 0;
+        for (String word : words) {
+            if (anaCorpus.contains(word)) {
+                number_of_anaWords++;
+            } 
+        }
+        return number_of_anaWords;
+    }
+
+    public static void print_anaWords(String[] words, ArrayList<String> anaCorpus) {
+        for (String word : words) {
+            if (anaCorpus.contains(word)) {
+                System.out.println("AnA word: " + word);
+            }
+        }
+    }
+
+    public static float sentimentAdvanced(float[] result, int number_of_anaWords) {
+        return ((number_of_anaWords / result[2]) * (1 - sentimentBasic(result[0], result[1], result[2])));
+    }
+
+    public static void whichPositiveWords(String[] words, ArrayList<String> positiveLexicon, ArrayList<String> negativeLexicon) {
         String[] returnedPositiveWords = {};
         for (String word : words) {
             if (positiveLexicon.contains(word)) {
