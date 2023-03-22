@@ -16,9 +16,11 @@ public class Jugo {
         
 
         System.out.println("Tweet: ");
+        System.out.println("_______________________");
         System.out.println(bosnian_tweet);
         System.out.println();
         System.out.println("Processed tweet: ");
+        System.out.println("_______________________");
         printProcessedTweet(cleaned_tweet);
         System.out.println();
         System.out.println();
@@ -28,7 +30,6 @@ public class Jugo {
         System.out.println();
 
         System.out.println("Sentiment of the tweet is " + sentimentBasic(result[0], result[1], result[2]) +"");
-
     }
 
     static String[] changeTweet(String str) {
