@@ -31,6 +31,8 @@ public class Jugo {
         System.out.println();
 
         System.out.println("Sentiment of the tweet is " + sentimentBasic(result[0], result[1], result[2]) + "");
+        System.out.println("_______________________");
+
     }
 
     static String[] changeTweet(String str) {
@@ -74,7 +76,18 @@ public class Jugo {
     }
 
     static ArrayList<String> anaCorpus() {
-        ArrayList<String> corpus = new ArrayList<>()
+        ArrayList<String> corpus3 = new ArrayList<>(100);
+        File filename3 = new File("/Users/ernestsmotlak/Desktop/Famnit/Diploma/Lexicons/BOSNIAN_AnAwords_Jahic(extended).txt");
+        Scanner input = null;
+        try {
+            input = new Scanner(filename3);
+            while (input.hasNext()) {
+                corpus3.add(input.next());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return corpus3;
     }
 
     public static int LevenshteinDistance(String X, String Y) {
