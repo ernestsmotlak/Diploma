@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 public class Jugo {
     public Jugo() {
-        String bosnian_tweet = "Igrali smo veoma dobro, pobijedili, ali smo zaista propustili mnogo prilika.";
+        String bosnian_tweet = "igrali smo veoma dobro pobijedili ali smo zaista propustili mnogo prilika";
+        //"Igrali smo veoma dobro, pobijedili, ali smo zaista propustili mnogo prilika."
         String[] cleaned_tweet = changeTweet(bosnian_tweet);
         ArrayList<String> jugoNegative = negativeCorpus();
         ArrayList<String> jugoPositive = positiveCorpus();
