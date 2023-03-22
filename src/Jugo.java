@@ -7,13 +7,14 @@ public class Jugo {
     public Jugo() {
         String bosnian_tweet = "Kako je lepo kada su ulice pune ljudi, smeha, gužve i života. Nadam se da ćemo se uskoro vratiti tom normalnom stanju. #optimizam #život #beograd";
 
-        //"Igrali smo veoma dobro, pobijedili, ali smo zaista propustili mnogo prilika."
+        // "Igrali smo veoma dobro, pobijedili, ali smo zaista propustili mnogo
+        // prilika."
         String[] cleaned_tweet = changeTweet(bosnian_tweet);
         ArrayList<String> jugoNegative = negativeCorpus();
         ArrayList<String> jugoPositive = positiveCorpus();
+        ArrayList<String> anaWords = anaCorpus();
 
         float[] result = difference(cleaned_tweet, jugoPositive, jugoNegative);
-        
 
         System.out.println("Tweet: ");
         System.out.println("_______________________");
@@ -29,7 +30,7 @@ public class Jugo {
         printNegativeWords(cleaned_tweet, jugoNegative);
         System.out.println();
 
-        System.out.println("Sentiment of the tweet is " + sentimentBasic(result[0], result[1], result[2]) +"");
+        System.out.println("Sentiment of the tweet is " + sentimentBasic(result[0], result[1], result[2]) + "");
     }
 
     static String[] changeTweet(String str) {
@@ -57,7 +58,7 @@ public class Jugo {
         return corpus1;
     }
 
-    static ArrayList<String> positiveCorpus() {    //preberi pozitivne besede
+    static ArrayList<String> positiveCorpus() { // preberi pozitivne besede
         ArrayList<String> corpus2 = new ArrayList<>(62942);
         File fileName2 = new File("/Users/ernestsmotlak/Desktop/Famnit/Diploma/Lexicons/positive_words_Jugo.txt");
         Scanner input = null;
@@ -70,6 +71,10 @@ public class Jugo {
             e.printStackTrace();
         }
         return corpus2;
+    }
+
+    static ArrayList<String> anaCorpus() {
+        ArrayList<String> corpus = new ArrayList<>()
     }
 
     public static int LevenshteinDistance(String X, String Y) {
@@ -109,7 +114,8 @@ public class Jugo {
         return 1.0;
     }
 
-    public static double Result(String[] words, ArrayList<String> positiveAL, ArrayList<String> negativeAL, double posWords, double negWords) {
+    public static double Result(String[] words, ArrayList<String> positiveAL, ArrayList<String> negativeAL,
+            double posWords, double negWords) {
         for (String word : words) {
             for (int j = 0; j < negativeAL.toArray().length; j++) {
                 if (findSimilarity(negativeAL.get(j), word) >= 0.8) {
@@ -131,7 +137,8 @@ public class Jugo {
         return (posWords - negWords) / words.length;
     }
 
-    public static float[] difference(String[] words, ArrayList<String> positiveLexicon, ArrayList<String> negativeLexicon) {
+    public static float[] difference(String[] words, ArrayList<String> positiveLexicon,
+            ArrayList<String> negativeLexicon) {
         int posWords = 0;
         int negWords = 0;
         for (String word : words) {
@@ -142,10 +149,11 @@ public class Jugo {
             }
         }
         float stringLength = words.length;
-        return new float[]{posWords, negWords, stringLength};
+        return new float[] { posWords, negWords, stringLength };
     }
 
-    public static void whichPositiveWords(String[] words, ArrayList<String> positiveLexicon, ArrayList<String> negativeLexicon) {
+    public static void whichPositiveWords(String[] words, ArrayList<String> positiveLexicon,
+            ArrayList<String> negativeLexicon) {
         String[] returnedPositiveWords = {};
         for (String word : words) {
             if (positiveLexicon.contains(word)) {
@@ -178,7 +186,7 @@ public class Jugo {
         float pos = (float) numOfPositiveWords;
         float neg = (float) numOfNegativeWords;
         float all = (float) numOfAllWords;
-        float sent = (pos - neg)/all;
+        float sent = (pos - neg) / all;
         return sent;
     }
 
@@ -187,4 +195,6 @@ public class Jugo {
             System.out.print(tweet[i] + " ");
         }
     }
+
+
 }
