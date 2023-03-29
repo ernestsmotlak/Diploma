@@ -14,7 +14,7 @@ public class Jugo {
 
         String bosnian_tweet = "Kako je plaho lepo kada su ulice definitivno pune ljudi, smeha, gužve i života. Nadam se da ćemo se uskoro vratiti tom stvarno normalnom stanju. #optimizam #život #beograd";
 
-        // moja koda
+    
 
         String[] cleaned_tweet = changeTweet(inputString);
         ArrayList<String> jugoNegative = negativeCorpus();
@@ -56,7 +56,6 @@ public class Jugo {
         System.out.println("Advanced sentiment is: " + sentimentAdvanced(result, number_of_anaWords));
         System.out.println("_______________________");
 
-        // moja koda
         // System.out.println(outputString);
 
         String[] words = outputString.split(" "); //turn String to array of strings
