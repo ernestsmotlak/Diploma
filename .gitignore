@@ -2,4 +2,7 @@
 .idea
 *.class
 .idea/
-
+Diploma.iml
+out
+src
+test
