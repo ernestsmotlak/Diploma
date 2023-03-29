@@ -239,6 +239,4 @@ public class Jugo {
             System.out.print(tweet[i] + " ");
         }
     }
-
-
 }
