@@ -12,3 +12,7 @@
     Java program then cleans it, and calculates the sentiment of it.
 
     -   Line 85 of .java has the path to the 'py.py'.
+
+# How to run
+ -	First run `Javac Main.java`, then `java Main`
+ -	Main.java starts the python program
