@@ -6,3 +6,5 @@ Diploma.iml
 out
 src
 test
+
+.env
